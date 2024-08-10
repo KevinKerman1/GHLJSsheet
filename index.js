@@ -1,4 +1,3 @@
-<script>
 // Function to execute when the element appears
 function onElementAppears() {
     console.log("Element has appeared!");
@@ -22,5 +21,4 @@ const observer = new MutationObserver(checkForElement);
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-</script>
 
