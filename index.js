@@ -2,8 +2,8 @@
 function onElementAppears() {
     console.log("Element has appeared!");
     // Place the action you want to perform here
-   let element = document.querySelector("#vs3__combobox > div.vs__selected-options");
-   element.innerHTML = `
+   let Workflow = document.querySelector("#vs3__combobox > div.vs__selected-options");
+   Workflow.innerHTML = `
    <span class="vs__selected">
        Dialer
        <!---->
