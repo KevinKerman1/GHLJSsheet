@@ -1,6 +1,5 @@
 // Function to check if the specific element is displayed and modify the dropdown
 function selectDialerOption() {
-    console.log('Checking for specific element...');
     // Define the selector for the specific element
     const specificElementSelector = '#__BVID__524___BV_modal_body_ > div > div > div.hl_rules--wrap > div.card > div > div:nth-child(1) > div > div:nth-child(3) > div';
 
@@ -42,9 +41,19 @@ function selectDialerOption() {
 
             // Add the search input field back to the selected options div
             selectedOptions.appendChild(searchInput);
+
+            // Disconnect the observer after the element is found and modified
+            observer.disconnect();
         }
     }
 }
 
-// Execute the function to modify the dropdown if the specific element is displayed
-selectDialerOption();
+// MutationObserver callback function to check for the element
+function checkForElement() {
+    selectDialerOption();
+}
+
+// Create a new MutationObserver instance and start observing the document body
+const observer = new MutationObserver(checkForElement);
+
+observer.observe(document.body, { childList: true, subtree: true });
