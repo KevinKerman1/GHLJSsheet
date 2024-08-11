@@ -1,6 +1,6 @@
 // Function to execute when the element appears
 function onElementAppears() {
-    console.log("Element has appeared!");
+    console.log("Element hass appeared!");
      //Place the action you want to perform here
   let Workflow = document.querySelector("##__BVID__247___BV_modal_content_");
    Workflow.innerHTML = `
