@@ -1,5 +1,6 @@
 // Function to check if the specific element is displayed and modify the dropdown
 function selectDialerOption() {
+    console.log('Checking for specific element...');
     // Define the selector for the specific element
     const specificElementSelector = '#__BVID__524___BV_modal_body_ > div > div > div.hl_rules--wrap > div.card > div > div:nth-child(1) > div > div:nth-child(3) > div';
 
