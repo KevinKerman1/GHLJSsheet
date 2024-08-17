@@ -196,3 +196,162 @@ function observeAddToAutomationButton() {
 
 // Start observing when the script runs
 observeAddToAutomationButton();
+
+
+
+//2nd Script
+
+
+
+// Function to hide the popup and begin the backend process
+function handlePopup() {
+    setTimeout(function() {
+        // Check if the first popup (alert) is visible, and do nothing if it is
+        var alertPopup = document.querySelector('#alertModal___BV_modal_content_');
+        if (alertPopup && alertPopup.style.display !== 'none') {
+            console.log('Alert popup is visible. No action needed.');
+            return;
+        }
+
+        // Handle the "Add to Automation" popup if it's visible
+        var modals = document.querySelectorAll('.modal-content');
+        var automationPopup = null;
+
+        modals.forEach(function(modal) {
+            var titleElement = modal.querySelector('h4');
+            if (titleElement && titleElement.textContent.trim() === "Add the following contacts") {
+                automationPopup = modal;
+            }
+        });
+
+        if (automationPopup) {
+            console.log('"Add to Automation" popup detected.');
+
+            // Hide the popup using an alternative method
+            automationPopup.style.position = 'absolute';
+            automationPopup.style.left = '-9999px';
+            console.log('"Add to Automation" popup moved out of viewport.');
+
+            // Show loading on the initial trigger button
+            var triggerButton = document.querySelector('span[title="Add to Automation"] button');
+            if (triggerButton) {
+                triggerButton.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Loading...';
+            }
+
+            // Start the backend process
+            processSteps();
+        } else {
+            console.log('"Add to Automation" popup not found.');
+        }
+    }, 1000); // Delay of 1000ms (1 second) before checking for the popup
+}
+
+// Function to process each step in the backend
+function processSteps() {
+    console.log('Processing steps started...');
+    
+    // Step 1: Click the first button ("Ok, proceed")
+    var firstButton = Array.from(document.querySelectorAll('.hl-btn')).find(btn => btn.textContent.trim() === "Ok, proceed");
+    if (firstButton) {
+        firstButton.click();
+        console.log('First button ("Ok, proceed") clicked.');
+    } else {
+        showError('First button not found.');
+        return;
+    }
+
+    // Step 2: Wait and select the "Dialer" option in the dropdown, then click the second button ("Start Dialer")
+    setTimeout(function() {
+        openDropdownAndSelectDialer(function() {
+            var secondButton = Array.from(document.querySelectorAll('.hl-btn')).find(btn => btn.textContent.trim() === "Start Dialer");
+            if (secondButton) {
+                secondButton.click();
+                console.log('Second button ("Start Dialer") clicked.');
+
+                // Step 3: Repeatedly check and click the third button ("Ok") when it appears
+                const thirdButtonInterval = setInterval(function() {
+                    var thirdButton = Array.from(document.querySelectorAll('.hl-btn')).find(btn => btn.textContent.trim() === "Ok");
+                    if (thirdButton) {
+                        thirdButton.click();
+                        console.log('Third button ("Ok") clicked.');
+
+                        // Change the URL after everything is done
+                        setTimeout(changeUrl, 500);
+                        clearInterval(thirdButtonInterval); // Stop checking once the button is clicked
+                    } else {
+                        console.log('Third button not found yet, retrying...');
+                    }
+                }, 500); // Check every 500ms for the third button
+            } else {
+                showError('Second button not found.');
+                return;
+            }
+        });
+    }, 3000); // Wait 3 seconds between Step 1 and Step 2
+}
+
+// Function to open the dropdown and select the "Dialer" option
+function openDropdownAndSelectDialer(callback) {
+    console.log('Attempting to select "Dialer" option...');
+    const dropdownInterval = setInterval(function() {
+        var dropdownInput = document.querySelector('input[aria-controls="vs3__listbox"]');
+
+        if (dropdownInput) {
+            console.log('Dropdown input found, forcing the dropdown to open...');
+            
+            dropdownInput.click();
+            dropdownInput.focus();
+
+            setTimeout(function() {
+                var dropdownOptionsContainer = document.querySelector('#vs3__listbox');
+
+                if (dropdownOptionsContainer) {
+                    console.log('Dropdown options container found, looking for "Dialer"...');
+
+                    var dialerOption = Array.from(dropdownOptionsContainer.querySelectorAll("li.vs__dropdown-option"))
+                                            .find(option => option.textContent.trim() === "Dialer");
+
+                    if (dialerOption) {
+                        dialerOption.click();
+                        console.log('Option "Dialer" selected!');
+                        clearInterval(dropdownInterval);
+                        if (callback) callback(); // Proceed to the next step after selection
+                    } else {
+                        console.log('Option "Dialer" not found in the dropdown.');
+                    }
+                } else {
+                    console.log('Dropdown options container not found.');
+                }
+            }, 1500); // Wait for 1.5 seconds to ensure the dropdown options have loaded
+        } else {
+            console.log('Dropdown input not found, retrying...');
+        }
+    }, 500); // Check every 500ms
+}
+
+// Function to change the URL
+function changeUrl() {
+    var currentUrl = window.location.href;
+    var oldPart = "contacts/smart_list/All";
+    var newPart = "conversations/manual_actions";
+    var newUrl = currentUrl.replace(oldPart, newPart);
+
+    console.log('Changing URL to:', newUrl);
+    window.location.href = newUrl;
+}
+
+// Function to show an error alert
+function showError(message) {
+    console.log(message);
+    alert(message);
+}
+
+// Add event listener to the trigger button
+var triggerButton = document.querySelector('span[title="Add to Automation"] button');
+if (triggerButton) {
+    triggerButton.addEventListener('click', function() {
+        setTimeout(handlePopup, 500); // Start handling the popup after 500ms
+    });
+} else {
+    console.log('Trigger button not found.');
+}
