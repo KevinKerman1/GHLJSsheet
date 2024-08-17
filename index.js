@@ -50,7 +50,7 @@ function changeButtonText(addToAutomationButton) {
             console.log('Start Dialer button clicked, waiting 5 seconds before URL change...');
             // Add a 5-second delay before the URL change occurs
             setTimeout(function() {
-                changeUrl(); // Trigger the URL change functionality after delay
+                 // Trigger the URL change functionality after delay changeUrl
             }, 5000); // 5000 milliseconds = 5 seconds
         });
     } else {
