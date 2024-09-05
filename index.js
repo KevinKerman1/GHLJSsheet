@@ -4,8 +4,9 @@
 (function() {
     // Function to create the button dynamically after a specific element
     function createButton() {
-        const referenceElement = document.querySelector('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(14) > button');
-        
+        // Selector for the reference element you provided
+        const referenceElement = document.querySelector('button[data-original-title="Campaign Selection Modal"]');
+
         if (referenceElement) {
             const button = document.createElement('button');
             button.id = 'startProcessButton';
@@ -112,4 +113,3 @@
     // Initialize the script
     createButton();
 })();
-
