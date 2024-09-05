@@ -1,4 +1,4 @@
-<script>
+
     console.log("Loading script from GitHub...");
 
     // Ensure the script runs only once
@@ -82,4 +82,3 @@
     } else {
         console.log("Script already loaded, skipping re-execution.");
     }
-</script>
