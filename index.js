@@ -1,38 +1,37 @@
 (function() {
-    // Function to log messages for debugging
-    function log(message) {
-        console.log("[Script Log] " + message);
-    }
-
     // Function to create the button dynamically after a specific element
-    function createButton(referenceElement) {
-        log("Reference element found, creating button...");
+    function createButton() {
+        // Selector for the reference element you provided
+        const referenceElement = document.querySelector('button[data-original-title="Campaign Selection Modal"]');
 
-        const button = document.createElement('button');
-        button.id = 'startProcessButton';
-        button.textContent = 'Start Process';
-        button.style.marginLeft = '10px';
-        button.style.padding = '10px 20px';
-        button.style.backgroundColor = '#007BFF';
-        button.style.color = '#fff';
-        button.style.border = 'none';
-        button.style.cursor = 'pointer';
+        if (referenceElement) {
+            const button = document.createElement('button');
+            button.id = 'startProcessButton';
+            button.textContent = 'Start Process';
+            button.style.marginLeft = '10px';
+            button.style.padding = '10px 20px';
+            button.style.backgroundColor = '#007BFF';
+            button.style.color = '#fff';
+            button.style.border = 'none';
+            button.style.cursor = 'pointer';
+            
+            // Insert the button after the reference element
+            referenceElement.insertAdjacentElement('afterend', button);
 
-        // Insert the button after the reference element
-        referenceElement.insertAdjacentElement('afterend', button);
+            // Attach click event listener to the button
+            button.addEventListener('click', function() {
+                showLoadingScreen();
+                startProcess();
+            });
 
-        // Attach click event listener to the button
-        button.addEventListener('click', function() {
-            showLoadingScreen();
-            startProcess();
-        });
-
-        log("Button created after reference element.");
+            console.log("Button created successfully after reference element.");
+        } else {
+            console.error('Reference element not found for creating button.');
+        }
     }
 
     // Function to show a loading screen
     function showLoadingScreen() {
-        log("Showing loading screen...");
         const loadingScreen = document.createElement('div');
         loadingScreen.id = 'loadingScreen';
         loadingScreen.style.position = 'fixed';
@@ -52,7 +51,6 @@
 
     // Function to remove the loading screen
     function removeLoadingScreen() {
-        log("Removing loading screen...");
         const loadingScreen = document.getElementById('loadingScreen');
         if (loadingScreen) {
             loadingScreen.remove();
@@ -81,7 +79,6 @@
 
     // Function to simulate clicking on sidebar tabs and the final button
     function startProcess() {
-        log("Starting process...");
         const tab1 = document.querySelector('#sb_conversations');
         
         // Function to simulate clicks with delays
@@ -90,7 +87,6 @@
                 setTimeout(() => {
                     if (element) {
                         element.click();
-                        log("Clicked element: " + element);
                         resolve();
                     }
                 }, delay);
@@ -105,7 +101,7 @@
             .then((startButton) => clickWithDelay(startButton, 1000)) // Click "Let's Start" button after it's ready
             .then(() => {
                 removeLoadingScreen(); // Remove loading screen after all clicks are done
-                log('Process complete.');
+                console.log('Process complete.');
             })
             .catch((error) => {
                 console.error('An error occurred during the process:', error);
@@ -113,25 +109,8 @@
             });
     }
 
-    // Function to observe DOM changes
-    function observeDOMChanges() {
-        const observer = new MutationObserver((mutationsList, observer) => {
-            const referenceElement = document.querySelector('button[data-original-title="Campaign Selection Modal"]');
-            if (referenceElement) {
-                createButton(referenceElement);
-                observer.disconnect(); // Stop observing after the button is created
-            } else {
-                log("Reference element not found yet.");
-            }
-        });
-
-        // Start observing the target node for configured mutations
-        observer.observe(document.body, { childList: true, subtree: true });
-    }
-
-    // Initialize script with DOMContentLoaded and MutationObserver
+    // Use DOMContentLoaded to ensure the DOM is fully loaded before running the script
     document.addEventListener('DOMContentLoaded', function() {
-        log("DOM fully loaded. Initializing script...");
-        observeDOMChanges(); // Start observing DOM changes
+        createButton(); // Run button creation when the DOM is loaded
     });
 })();
