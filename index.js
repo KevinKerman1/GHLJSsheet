@@ -1,31 +1,49 @@
 (function() {
+    // Function to wait for an element to be ready before proceeding
+    function waitForElement(selector, timeout = 10000) {
+        return new Promise((resolve, reject) => {
+            const startTime = Date.now();
+
+            function checkIfReady() {
+                const element = document.querySelector(selector);
+                if (element) {
+                    resolve(element);
+                } else if (Date.now() - startTime > timeout) {
+                    reject(new Error(`Element ${selector} not found within ${timeout}ms`));
+                } else {
+                    setTimeout(checkIfReady, 500); // Check every 500ms
+                }
+            }
+
+            checkIfReady();
+        });
+    }
+
     // Function to create the button dynamically after a specific element
     function createButton() {
         // Selector for the reference element you provided
-        const referenceElement = document.querySelector('button[data-original-title="Campaign Selection Modal"]');
+        waitForElement('button[data-original-title="Campaign Selection Modal"]', 10000)
+            .then(referenceElement => {
+                const button = document.createElement('button');
+                button.id = 'startProcessButton';
+                button.textContent = 'Start Process';
+                button.style.marginLeft = '10px';
+                button.style.padding = '10px 20px';
+                button.style.backgroundColor = '#007BFF';
+                button.style.color = '#fff';
+                button.style.border = 'none';
+                button.style.cursor = 'pointer';
+                
+                // Insert the button after the reference element
+                referenceElement.insertAdjacentElement('afterend', button);
 
-        if (referenceElement) {
-            const button = document.createElement('button');
-            button.id = 'startProcessButton';
-            button.textContent = 'Start Process';
-            button.style.marginLeft = '10px';
-            button.style.padding = '10px 20px';
-            button.style.backgroundColor = '#007BFF';
-            button.style.color = '#fff';
-            button.style.border = 'none';
-            button.style.cursor = 'pointer';
-            
-            // Insert the button after the reference element
-            referenceElement.insertAdjacentElement('afterend', button);
-
-            // Attach click event listener to the button
-            button.addEventListener('click', function() {
-                showLoadingScreen();
-                startProcess();
-            });
-        } else {
-            console.error('Reference element not found for creating button.');
-        }
+                // Attach click event listener to the button
+                button.addEventListener('click', function() {
+                    showLoadingScreen();
+                    startProcess();
+                });
+            })
+            .catch(error => console.error('Reference element not found for creating button:', error));
     }
 
     // Function to show a loading screen
