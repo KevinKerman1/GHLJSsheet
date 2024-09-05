@@ -1,4 +1,4 @@
-<script>
+
     console.log("Loading script from GitHub...");
 
     // Fetch the script from GitHub and execute it
@@ -47,106 +47,31 @@
 
                     console.log("Button created successfully.");
                 } else {
-                    console.error('Reference element not found for creating button.');
+                    console.log("Reference element not found yet. Waiting for it...");
                 }
             }
 
-            // Function to show a loading screen
-            function showLoadingScreen() {
-                console.log("Showing loading screen...");
-                const loadingScreen = document.createElement('div');
-                loadingScreen.id = 'loadingScreen';
-                loadingScreen.style.position = 'fixed';
-                loadingScreen.style.top = '0';
-                loadingScreen.style.left = '0';
-                loadingScreen.style.width = '100%';
-                loadingScreen.style.height = '100%';
-                loadingScreen.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-                loadingScreen.style.color = '#fff';
-                loadingScreen.style.display = 'flex';
-                loadingScreen.style.justifyContent = 'center';
-                loadingScreen.style.alignItems = 'center';
-                loadingScreen.style.fontSize = '24px';
-                loadingScreen.textContent = 'Loading, please wait...';
-                document.body.appendChild(loadingScreen);
-            }
-
-            // Function to simulate clicking on sidebar tabs and the final button
-            function startProcess() {
-                console.log("Starting process...");
-                const tab1 = document.querySelector('#sb_conversations');
-
-                if (!tab1) {
-                    console.error("Tab 1 (Conversations) not found.");
-                    return;
-                }
-
-                // Function to simulate clicks with delays
-                function clickWithDelay(element, delay) {
-                    return new Promise((resolve) => {
-                        setTimeout(() => {
-                            if (element) {
-                                console.log(`Clicking element: ${element}`);
-                                element.click();
-                                resolve();
-                            } else {
-                                console.error(`Element ${element} not found for clicking.`);
-                            }
-                        }, delay);
-                    });
-                }
-
-                // Click on tabs and "Let's Start" button in sequence
-                clickWithDelay(tab1, 1000) // Click first tab after 1 second
-                    .then(() => waitForElementToBeReady('#tb_manial-actions', 10000)) // Wait up to 10 seconds for "Manual Actions" tab to be ready
-                    .then((tab2) => clickWithDelay(tab2, 1000)) // Click "Manual Actions" tab after it's ready
-                    .then(() => waitForElementToBeReady('#campaign-picker > button', 10000)) // Wait up to 10 seconds for "Let's Start" button to be ready
-                    .then((startButton) => clickWithDelay(startButton, 1000)) // Click "Let's Start" button after it's ready
-                    .then(() => {
-                        console.log('Process complete, removing loading screen.');
-                        removeLoadingScreen(); // Remove loading screen after all clicks are done
-                    })
-                    .catch((error) => {
-                        console.error('An error occurred during the process:', error);
-                        removeLoadingScreen(); // Remove loading screen in case of error
-                    });
-            }
-
-            // Function to remove the loading screen
-            function removeLoadingScreen() {
-                const loadingScreen = document.getElementById('loadingScreen');
-                if (loadingScreen) {
-                    loadingScreen.remove();
-                    console.log("Loading screen removed.");
-                }
-            }
-
-            // Function to wait for an element to be ready before clicking
-            function waitForElementToBeReady(selector, timeout = 10000) {
-                return new Promise((resolve, reject) => {
-                    const startTime = Date.now();
-
-                    function checkIfReady() {
-                        const element = document.querySelector(selector);
-                        if (element) {
-                            console.log(`Element ${selector} is ready.`);
-                            resolve(element);
-                        } else if (Date.now() - startTime > timeout) {
-                            reject(new Error(`Element ${selector} not found within ${timeout}ms`));
-                        } else {
-                            setTimeout(checkIfReady, 500); // Check every 500ms
-                        }
+            // MutationObserver to watch for the element
+            function observeElement() {
+                const observer = new MutationObserver((mutationsList, observer) => {
+                    const referenceElement = document.querySelector('button[data-original-title="Campaign Selection Modal"]');
+                    if (referenceElement) {
+                        console.log("Reference element detected by MutationObserver.");
+                        createButton();
+                        observer.disconnect(); // Stop observing once the element is found
                     }
-
-                    checkIfReady();
                 });
+
+                // Observe changes in the DOM
+                observer.observe(document.body, { childList: true, subtree: true });
             }
 
             // Initialize the script
             document.addEventListener('DOMContentLoaded', function() {
                 console.log("DOM fully loaded. Running createButton...");
                 createButton(); // Try to create the button when the DOM is ready
+                observeElement(); // Watch for dynamically loaded elements
             });
         })
         .catch(error => console.error('Error loading script from GitHub:', error));
-</script>
+
