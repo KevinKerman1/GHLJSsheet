@@ -1,10 +1,11 @@
 (function() {
     // Function to create the button dynamically after a specific element
     function createButton() {
-        // Selector for the reference element you provided
+        console.log("Trying to find the reference element...");
         const referenceElement = document.querySelector('button[data-original-title="Campaign Selection Modal"]');
 
         if (referenceElement) {
+            console.log("Reference element found, creating button...");
             const button = document.createElement('button');
             button.id = 'startProcessButton';
             button.textContent = 'Start Process';
@@ -14,7 +15,7 @@
             button.style.color = '#fff';
             button.style.border = 'none';
             button.style.cursor = 'pointer';
-            
+
             // Insert the button after the reference element
             referenceElement.insertAdjacentElement('afterend', button);
 
@@ -23,6 +24,8 @@
                 showLoadingScreen();
                 startProcess();
             });
+
+            console.log("Button created successfully.");
         } else {
             console.error('Reference element not found for creating button.');
         }
@@ -30,6 +33,7 @@
 
     // Function to show a loading screen
     function showLoadingScreen() {
+        console.log("Showing loading screen...");
         const loadingScreen = document.createElement('div');
         loadingScreen.id = 'loadingScreen';
         loadingScreen.style.position = 'fixed';
@@ -52,6 +56,7 @@
         const loadingScreen = document.getElementById('loadingScreen');
         if (loadingScreen) {
             loadingScreen.remove();
+            console.log("Loading screen removed.");
         }
     }
 
@@ -77,14 +82,16 @@
 
     // Function to simulate clicking on sidebar tabs and the final button
     function startProcess() {
+        console.log("Starting process...");
         const tab1 = document.querySelector('#sb_conversations');
-        
+
         // Function to simulate clicks with delays
         function clickWithDelay(element, delay) {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     if (element) {
                         element.click();
+                        console.log("Clicked element: ", element);
                         resolve();
                     }
                 }, delay);
@@ -107,6 +114,25 @@
             });
     }
 
-    // Initialize the script
-    createButton();
+    // Observe DOM changes for dynamically loaded elements
+    function observeDOMChanges() {
+        const observer = new MutationObserver((mutationsList, observer) => {
+            const referenceElement = document.querySelector('button[data-original-title="Campaign Selection Modal"]');
+            if (referenceElement) {
+                console.log("Reference element detected by MutationObserver.");
+                createButton();
+                observer.disconnect(); // Stop observing after the button is created
+            }
+        });
+
+        // Start observing the target node for configured mutations
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Ensure the script runs after DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM fully loaded. Initializing script...");
+        createButton(); // Try to create the button when the DOM is ready
+        observeDOMChanges(); // Use MutationObserver in case the element loads dynamically
+    });
 })();
