@@ -1,6 +1,3 @@
-
-//3rd script
-
 (function() {
     // Function to create the button dynamically after a specific element
     function createButton() {
@@ -110,6 +107,8 @@
             });
     }
 
-    // Initialize the script
-    createButton();
+    // Run the script once the DOM content is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        createButton();
+    });
 })();
