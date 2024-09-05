@@ -1,3 +1,7 @@
+console.log("Script is running from GitHub");
+alert("Script is running from GitHub");
+
+
 (function() {
     // Function to create the button dynamically after a specific element
     function createButton() {
