@@ -4,6 +4,32 @@
         console.log("[Script Log] " + message);
     }
 
+    // Function to create the button dynamically after a specific element
+    function createButton(referenceElement) {
+        log("Reference element found, creating button...");
+
+        const button = document.createElement('button');
+        button.id = 'startProcessButton';
+        button.textContent = 'Start Process';
+        button.style.marginLeft = '10px';
+        button.style.padding = '10px 20px';
+        button.style.backgroundColor = '#007BFF';
+        button.style.color = '#fff';
+        button.style.border = 'none';
+        button.style.cursor = 'pointer';
+
+        // Insert the button after the reference element
+        referenceElement.insertAdjacentElement('afterend', button);
+
+        // Attach click event listener to the button
+        button.addEventListener('click', function() {
+            showLoadingScreen();
+            startProcess();
+        });
+
+        log("Button created after reference element.");
+    }
+
     // Function to show a loading screen
     function showLoadingScreen() {
         log("Showing loading screen...");
@@ -31,6 +57,26 @@
         if (loadingScreen) {
             loadingScreen.remove();
         }
+    }
+
+    // Function to wait for an element to be ready before clicking
+    function waitForElementToBeReady(selector, timeout = 10000) {
+        return new Promise((resolve, reject) => {
+            const startTime = Date.now();
+
+            function checkIfReady() {
+                const element = document.querySelector(selector);
+                if (element) {
+                    resolve(element);
+                } else if (Date.now() - startTime > timeout) {
+                    reject(new Error(`Element ${selector} not found within ${timeout}ms`));
+                } else {
+                    setTimeout(checkIfReady, 500); // Check every 500ms
+                }
+            }
+
+            checkIfReady();
+        });
     }
 
     // Function to simulate clicking on sidebar tabs and the final button
@@ -67,50 +113,6 @@
             });
     }
 
-    // Function to wait for an element to be ready before clicking
-    function waitForElementToBeReady(selector, timeout = 10000) {
-        return new Promise((resolve, reject) => {
-            const startTime = Date.now();
-
-            function checkIfReady() {
-                const element = document.querySelector(selector);
-                if (element) {
-                    resolve(element);
-                } else if (Date.now() - startTime > timeout) {
-                    reject(new Error(`Element ${selector} not found within ${timeout}ms`));
-                } else {
-                    setTimeout(checkIfReady, 500); // Check every 500ms
-                }
-            }
-
-            checkIfReady();
-        });
-    }
-
-    // Function to create the button dynamically after a specific element
-    function createButton(referenceElement) {
-        log("Reference element found, creating button...");
-
-        const button = document.createElement('button');
-        button.id = 'startProcessButton';
-        button.textContent = 'Start Process';
-        button.style.marginLeft = '10px';
-        button.style.padding = '10px 20px';
-        button.style.backgroundColor = '#007BFF';
-        button.style.color = '#fff';
-        button.style.border = 'none';
-        button.style.cursor = 'pointer';
-
-        // Insert the button after the reference element
-        referenceElement.insertAdjacentElement('afterend', button);
-
-        // Attach click event listener to the button
-        button.addEventListener('click', function() {
-            showLoadingScreen();
-            startProcess();
-        });
-    }
-
     // Function to observe DOM changes
     function observeDOMChanges() {
         const observer = new MutationObserver((mutationsList, observer) => {
@@ -118,6 +120,8 @@
             if (referenceElement) {
                 createButton(referenceElement);
                 observer.disconnect(); // Stop observing after the button is created
+            } else {
+                log("Reference element not found yet.");
             }
         });
 
@@ -125,7 +129,7 @@
         observer.observe(document.body, { childList: true, subtree: true });
     }
 
-    // Run the script once the DOM content is fully loaded
+    // Initialize script with DOMContentLoaded and MutationObserver
     document.addEventListener('DOMContentLoaded', function() {
         log("DOM fully loaded. Initializing script...");
         observeDOMChanges(); // Start observing DOM changes
