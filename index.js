@@ -1,5 +1,4 @@
-console.log("Script is running from GitHub");
-alert("Script is running from GitHub");
+
 
 
 (function() {
