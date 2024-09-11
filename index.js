@@ -1,5 +1,6 @@
 
 console.log("script running");
+document.querySelector("#tb_lists > span").style.display = "none";
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
     if (addToAutomationButton) {
