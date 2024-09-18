@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 61");
+alert("test 62");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -226,7 +226,9 @@ observeAddToAutomationButton();
             "#contact-details > div > div.hl_contact-details-center > div.hl_conversations--message > div.hl_conversations--message-body > div > div.message-input-wrap.overflowdisabled.new-channel-picker > div.flex.items-center > ul > li:nth-child(2)",
             "#message-composer > div > div.flex.items-center.pt-2\.5.border-t > div:nth-child(1) > div:nth-child(4)",
             "#message-composer > div > div.flex.items-center.pt-2\.5.border-t > div:nth-child(1) > div:nth-child(5)",
-            "#message-composer > div > div.flex.items-center.pt-2\.5.border-t > div:nth-child(1) > div:nth-child(6)"
+            "#message-composer > div > div.flex.items-center.pt-2\.5.border-t > div:nth-child(1) > div:nth-child(6)",
+            "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.bg-gray-100",
+            "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.px-4.pt-4.flex.justify-center.pb-4"
         ];
 
         selectors.forEach((selector, index) => {
