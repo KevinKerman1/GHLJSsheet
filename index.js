@@ -231,7 +231,7 @@ observeAddToAutomationButton();
         selectors.forEach((selector, index) => {
             const element = document.querySelector(selector);
             if (element) {
-                element.style.display = "none";
+                element.style.display = "none !important";
                 console.log(`Element ${index + 1} hidden successfully`);
             }
         });
