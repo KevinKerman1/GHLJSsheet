@@ -1,6 +1,6 @@
 
 console.log("script running");
-alert("test 55");
+alert("test 56");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -213,6 +213,8 @@ observeAddToAutomationButton();
             "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(12)",
             "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--right > div:nth-child(3)",
             "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(8)",
+            "#tb_bulk-actions > span",
+            "#tb_contacts-restore"
             "#colViewButton"
         ];
 
