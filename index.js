@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 63");
+alert("test 64");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
