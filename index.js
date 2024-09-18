@@ -202,21 +202,31 @@ observeAddToAutomationButton();
 
 //GHL Customization code
 (function () {
-    // Function to hide the target element when it appears
-    function hideTargetElement() {
-        const targetSelector = "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(14) > button";
-        const targetElement = document.querySelector(targetSelector);
+    // Function to hide the target elements when they appear
+    function hideTargetElements() {
+        // First target element
+        const targetSelector1 = "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(14) > button";
+        const targetElement1 = document.querySelector(targetSelector1);
 
-        if (targetElement) {
-            targetElement.style.display = "none";
-            console.log("Element hidden successfully");
+        if (targetElement1) {
+            targetElement1.style.display = "none";
+            console.log("First element hidden successfully");
+        }
+
+        // Second target element
+        const targetSelector2 = "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(12)"; // Replace with the actual selector of the second element
+        const targetElement2 = document.querySelector(targetSelector2);
+
+        if (targetElement2) {
+            targetElement2.style.display = "none";
+            console.log("Second element hidden successfully");
         }
     }
 
     // Create a Mutation Observer to watch for changes in the DOM
     const observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
-            hideTargetElement(); // Call the function whenever there's a change in the DOM
+            hideTargetElements(); // Call the function whenever there's a change in the DOM
         });
     });
 
@@ -226,6 +236,7 @@ observeAddToAutomationButton();
         subtree: true,
     });
 
-    // Run the function once initially in case the element is already present
-    hideTargetElement();
+    // Run the function once initially in case the elements are already present
+    hideTargetElements();
 })();
+
