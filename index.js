@@ -1,6 +1,6 @@
 
 console.log("script running");
-alert("test 52");
+alert("test 53");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -201,26 +201,24 @@ observeAddToAutomationButton();
 
 
 //GHL Customization code
+
 (function () {
-    // Function to hide the target elements when they appear
+    // Function to hide all target elements when they appear
     function hideTargetElements() {
-        // First target element
-        const targetSelector1 = "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(14) > button";
-        const targetElement1 = document.querySelector(targetSelector1);
+        const selectors = [
+            "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(14) > button", // First element
+            "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(6)", // Second element
+            "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(5)", // Third element
+            "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(1)"  // Fourth element
+        ];
 
-        if (targetElement1) {
-            targetElement1.style.display = "none";
-            console.log("First element hidden successfully");
-        }
-
-        // Second target element
-        const targetSelector2 = "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(12)"; // Replace with the actual selector of the second element
-        const targetElement2 = document.querySelector(targetSelector2);
-
-        if (targetElement2) {
-            targetElement2.style.display = "none";
-            console.log("Second element hidden successfully");
-        }
+        selectors.forEach((selector, index) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.style.display = "none";
+                console.log(`Element ${index + 1} hidden successfully`);
+            }
+        });
     }
 
     // Create a Mutation Observer to watch for changes in the DOM
@@ -239,4 +237,5 @@ observeAddToAutomationButton();
     // Run the function once initially in case the elements are already present
     hideTargetElements();
 })();
+
 
