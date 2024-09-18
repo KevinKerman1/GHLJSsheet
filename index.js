@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 59");
+alert("test 60");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -220,7 +220,8 @@ observeAddToAutomationButton();
             "#tb_tasks",
             "#tb_business",
             "#tb_contacts-settings-top",
-            "#tb_contact-custom-fields-settings"
+            "#tb_contact-custom-fields-settings",
+            "#contact-details > div > div.hl_contact-details-right"
         ];
 
         selectors.forEach((selector, index) => {
