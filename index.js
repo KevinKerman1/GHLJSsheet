@@ -211,14 +211,17 @@ observeAddToAutomationButton();
             "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(5)", // Third element
             "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(1)",
             "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(12)",
+            "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(4)",
             "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--right > div:nth-child(3)",
             "#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(8)",
+            "#tb_lists",
             "#tb_bulk-actions",
             "#tb_contacts-restore",
             "#colViewButton",
             "#tb_tasks",
             "#tb_business",
             "#tb_contacts-settings-top"
+            "#tb_contact-custom-fields-settings",
         ];
 
         selectors.forEach((selector, index) => {
