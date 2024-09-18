@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 67");
+alert("test 68");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -231,7 +231,7 @@ observeAddToAutomationButton();
         selectors.forEach((selector, index) => {
             const element = document.querySelector(selector);
             if (element) {
-                element.style.display = "none !important";
+                element.style.display = "none";
                 console.log(`Element ${index + 1} hidden successfully`);
             }
         });
