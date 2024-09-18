@@ -222,13 +222,7 @@ observeAddToAutomationButton();
             "#tb_contacts-settings-top",
             "#tb_contact-custom-fields-settings",
             "#contact-details > div > div.hl_contact-details-right",
-            "#contact-details > div > div.hl_contact-details-center > div.hl_conversations--message > div.hl_conversations--message-header-new",
-            "#contact-details > div > div.hl_contact-details-center > div.hl_conversations--message > div.hl_conversations--message-body > div > div.message-input-wrap.overflowdisabled.new-channel-picker > div.flex.items-center > ul > li:nth-child(2)",
-            "#message-composer > div > div.flex.items-center.pt-2\.5.border-t > div:nth-child(1) > div:nth-child(4) > div > svg > path",
-            "#message-composer > div > div.flex.items-center.pt-2\.5.border-t > div:nth-child(1) > div:nth-child(5) > div > svg",
-            "#message-composer > div > div.flex.items-center.pt-2\.5.border-t > div:nth-child(1) > div:nth-child(6) > div > div",
-            "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.bg-gray-100",
-            "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.px-4.pt-4.flex.justify-center.pb-4"
+            "#contact-details > div > div.hl_contact-details-center > div.hl_conversations--message > div.hl_conversations--message-header-new"
         ];
 
         selectors.forEach((selector, index) => {
