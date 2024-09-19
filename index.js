@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 70");
+alert("test 71");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -228,7 +228,22 @@ observeAddToAutomationButton();
             "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.bg-gray-100 > div:nth-child(5) > div",
             "#ContactsClientPortal > div",
             "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.bg-gray-100 > div:nth-child(2)",
-            "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.bg-gray-100"
+            "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.bg-gray-100",
+            "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.px-4.pt-4.flex.justify-center.pb-4",
+            "#sb_location-mobile-app",
+            "#sb_app-marketplace",
+            "#sb_reporting",
+            "#sb_reputation",
+            "#sb_app-media",
+            "#sb_memberships",
+            "#sb_sites",
+            "#sb_automation",
+            "#sb_email-marketing",
+            "#sb_payments",
+            "#sb_opportunities",
+            "#sb_calendars",
+            "#sb_launchpad"
+            
         ];
 
         selectors.forEach((selector, index) => {
