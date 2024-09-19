@@ -1,19 +1,22 @@
 console.log("script running");
-alert("test 85")
+alert("test 87")
 
-// Function to change the button text when it appears and update its content
+// Function to change the button structure when it appears
 function changeButtonText(addToAutomationButton) {
     if (addToAutomationButton) {
         console.log('Add to Automation button found:', addToAutomationButton);
 
-        // Remove the <i> tag inside the button (if present)
-        const iconElement = addToAutomationButton.querySelector('i');
-        if (iconElement) {
-            iconElement.remove(); // Remove the <i> element
-        }
+        // Clear all inner content of the button
+        addToAutomationButton.innerHTML = '';
 
-        // Change the button text to "Add to Dialer"
-        addToAutomationButton.textContent = "Add to Dialer";
+        // Create a new text node with the desired text
+        const newText = document.createTextNode("Add to Dialer");
+
+        // Append the text node to the button
+        addToAutomationButton.appendChild(newText);
+
+        // Ensure the button keeps its original classes
+        addToAutomationButton.classList.add("btn", "btn-light", "btn-sm");
 
         // Log the button's current text content after attempting to change it
         console.log('Button text after change:', addToAutomationButton.textContent);
@@ -23,7 +26,7 @@ function changeButtonText(addToAutomationButton) {
             console.log('Add to Dialer button clicked, waiting 5 seconds before URL change...');
             // Add a 5-second delay before the URL change occurs
             setTimeout(function() {
-                changeUrl(); // Trigger the URL change functionality after the delay
+                changeUrl(); // Trigger the URL change functionality after delay
             }, 5000); // 5000 milliseconds = 5 seconds
         });
     } else {
@@ -74,7 +77,7 @@ function getDropdownInput() {
 // Function to force open the dropdown and select the "Dialer" option
 function openDropdownAndSelectDialer() {
     let dropdownClicked = false; // Track whether the dropdown has been clicked
-    const dropdownInterval = setInterval(function() {
+    const dropdownInterval = setInterval(function () {
         if (dropdownClicked) {
             clearInterval(dropdownInterval);
             return;
@@ -90,7 +93,7 @@ function openDropdownAndSelectDialer() {
             dropdownInput.focus();
             dropdownClicked = true; // Mark the dropdown as clicked
 
-            setTimeout(function() {
+            setTimeout(function () {
                 var dropdownOptionsContainer = document.querySelector('#vs3__listbox');
 
                 if (dropdownOptionsContainer) {
