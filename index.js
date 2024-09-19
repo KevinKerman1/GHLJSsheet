@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 71");
+alert("test 72");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -202,6 +202,26 @@ observeAddToAutomationButton();
 //GHL Customization code
 
 (function () {
+    // Function to check if the user ID is the one we want to exclude
+    function shouldHideElements() {
+        const storageKeys = Object.keys(localStorage);
+        let userId = null;
+
+        // Search for the key that contains "_pendo_visitorId"
+        for (const key of storageKeys) {
+            if (key.includes("_pendo_visitorId")) {
+                const userData = JSON.parse(localStorage.getItem(key)); // Assuming the value is JSON
+                if (userData && userData.id) {
+                    userId = userData.id;
+                }
+                break;
+            }
+        }
+
+        // If the user ID is "cfOqEnOZzOwGpq7yQeKd", we do not hide the elements
+        return userId !== "cfOqEnOZzOwGpq7yQeKd";
+    }
+
     // Function to hide all target elements when they appear
     function hideTargetElements() {
         const selectors = [
@@ -243,7 +263,6 @@ observeAddToAutomationButton();
             "#sb_opportunities",
             "#sb_calendars",
             "#sb_launchpad"
-            
         ];
 
         selectors.forEach((selector, index) => {
@@ -255,21 +274,26 @@ observeAddToAutomationButton();
         });
     }
 
-    // Create a Mutation Observer to watch for changes in the DOM
-    const observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-            hideTargetElements(); // Call the function whenever there's a change in the DOM
+    // Check if we should hide the elements based on the user ID
+    if (shouldHideElements()) {
+        // Create a Mutation Observer to watch for changes in the DOM
+        const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function () {
+                hideTargetElements(); // Call the function whenever there's a change in the DOM
+            });
         });
-    });
 
-    // Start observing the body for changes in child elements
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-    });
+        // Start observing the body for changes in child elements
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+        });
 
-    // Run the function once initially in case the elements are already present
-    hideTargetElements();
+        // Run the function once initially in case the elements are already present
+        hideTargetElements();
+    } else {
+        console.log("User ID matched, script will not hide elements.");
+    }
 })();
 
 
