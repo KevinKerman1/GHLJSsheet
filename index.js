@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 72");
+alert("test 73");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -210,15 +210,20 @@ observeAddToAutomationButton();
         // Search for the key that contains "_pendo_visitorId"
         for (const key of storageKeys) {
             if (key.includes("_pendo_visitorId")) {
-                const userData = JSON.parse(localStorage.getItem(key)); // Assuming the value is JSON
-                if (userData && userData.id) {
-                    userId = userData.id;
+                try {
+                    const userData = JSON.parse(localStorage.getItem(key)); // Parse the value as JSON
+                    if (userData && typeof userData === 'object' && userData.id) {
+                        userId = userData.id;  // Extract the user ID
+                        console.log("User ID found:", userId);
+                    }
+                } catch (error) {
+                    console.error("Error parsing local storage item", error);
                 }
-                break;
+                break; // Exit the loop once we find the key
             }
         }
 
-        // If the user ID is "cfOqEnOZzOwGpq7yQeKd", we do not hide the elements
+        // Return true if the user ID is not "cfOqEnOZzOwGpq7yQeKd", meaning we should hide elements
         return userId !== "cfOqEnOZzOwGpq7yQeKd";
     }
 
@@ -295,5 +300,6 @@ observeAddToAutomationButton();
         console.log("User ID matched, script will not hide elements.");
     }
 })();
+
 
 
