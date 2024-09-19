@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 73");
+alert("test 74");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -212,9 +212,10 @@ observeAddToAutomationButton();
             if (key.includes("_pendo_visitorId")) {
                 try {
                     const userData = JSON.parse(localStorage.getItem(key)); // Parse the value as JSON
+                    console.log("Found _pendo_visitorId key:", key); // Log the found key
                     if (userData && typeof userData === 'object' && userData.id) {
                         userId = userData.id;  // Extract the user ID
-                        console.log("User ID found:", userId);
+                        console.log("Extracted User ID:", userId); // Log the found user ID
                     }
                 } catch (error) {
                     console.error("Error parsing local storage item", error);
@@ -223,8 +224,14 @@ observeAddToAutomationButton();
             }
         }
 
-        // Return true if the user ID is not "cfOqEnOZzOwGpq7yQeKd", meaning we should hide elements
-        return userId !== "cfOqEnOZzOwGpq7yQeKd";
+        // Log whether or not we should hide the elements
+        if (userId === "cfOqEnOZzOwGpq7yQeKd") {
+            console.log("User ID matches cfOqEnOZzOwGpq7yQeKd, elements will not be hidden.");
+            return false;
+        } else {
+            console.log("User ID does not match, elements will be hidden.");
+            return true;
+        }
     }
 
     // Function to hide all target elements when they appear
@@ -274,7 +281,7 @@ observeAddToAutomationButton();
             const element = document.querySelector(selector);
             if (element) {
                 element.style.display = "none";
-                console.log(`Element ${index + 1} hidden successfully`);
+                
             }
         });
     }
@@ -300,6 +307,3 @@ observeAddToAutomationButton();
         console.log("User ID matched, script will not hide elements.");
     }
 })();
-
-
-
