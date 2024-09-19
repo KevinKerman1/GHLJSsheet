@@ -1,29 +1,20 @@
 console.log("script running");
-alert("test 76");
+alert("test 77");
 
-// Function to change the appearance and text of the Add to Automation button
-function changeButtonAppearance(addToAutomationButton) {
+// Function to change the text of the Add to Automation button to "Add to Dialer"
+function changeButtonText(addToAutomationButton) {
     if (addToAutomationButton) {
         console.log('Add to Automation button found:', addToAutomationButton);
 
-        // Change the button's appearance by updating its class
-        addToAutomationButton.className = 'hl-btn inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded shadow-sm text-white bg-apple-500 hover:bg-apple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-apple-500';
-
-        // Remove any existing icon inside the button
-        const iconElement = addToAutomationButton.querySelector('i');
-        if (iconElement) {
-            iconElement.remove(); // Remove the old icon
-        }
-
-        // Change the text content to "Let's start"
+        // Change the button's text content to "Add to Dialer"
         addToAutomationButton.textContent = "Add to Dialer";
 
         // Log the button's current text content after attempting to change it
-        console.log('Button appearance and text after change:', addToAutomationButton.textContent);
+        console.log('Button text after change:', addToAutomationButton.textContent);
 
         // Add the click event listener to handle the URL change when the button is clicked
         addToAutomationButton.addEventListener('click', function() {
-            console.log('Start Dialer button clicked, waiting 5 seconds before URL change...');
+            console.log('Add to Dialer button clicked, waiting 5 seconds before URL change...');
             // Add a 5-second delay before the URL change occurs
             setTimeout(function() {
                 changeUrl(); // Trigger the URL change functionality after delay
@@ -34,22 +25,44 @@ function changeButtonAppearance(addToAutomationButton) {
     }
 }
 
+// Function to change the URL
+function changeUrl() {
+    console.log('Changing URL...');
+    var currentUrl = window.location.href;
+    var oldPart = "contacts/smart_list/All";
+    var newPart = "conversations/manual_actions";
+    var newUrl = currentUrl.replace(oldPart, newPart);
+
+    // Redirect the user to the new URL
+    window.location.href = newUrl;
+}
+
+// Function to remove the nearest <li> tag to the button
+function removeClosestLiElement(addToAutomationButton) {
+    // Traverse upwards to find the closest <li> ancestor and remove it
+    const closestLi = addToAutomationButton.closest('li');
+    if (closestLi) {
+        closestLi.remove();
+        console.log('Closest <li> element removed:', closestLi);
+    } else {
+        console.log('No <li> element found near the button.');
+    }
+}
+
 // Function to start observing the "Add to Automation" button
 function observeAddToAutomationButton() {
     const observer = new MutationObserver(mutations => {
         mutations.forEach(mutation => {
             mutation.addedNodes.forEach(node => {
                 if (node.nodeType === 1) {
-                    const buttonSelector = 'button.btn.btn-light.btn-sm';
+                    const buttonSelector = 'button.hl-btn.text-curious-blue-500.border-curious-blue-400';
                     const buttons = node.querySelectorAll(buttonSelector);
 
                     buttons.forEach(button => {
-                        if (button.getAttribute('data-original-title') === "Campaign Selection Modal") {
+                        if (button.textContent.trim() === "Add to Automation") {
                             console.log('"Add to Automation" button detected.');
-                            changeButtonAppearance(button); // Change button appearance
-                            openDropdownAndSelectDialer();
-                            removeElements(); // Call the removeElements function to remove both elements
-                            fillAndHideInput(); // Call the fillAndHideInput function
+                            changeButtonText(button);
+                            removeClosestLiElement(button); // Remove the nearest <li> tag
                         }
                     });
                 }
@@ -68,7 +81,6 @@ function observeAddToAutomationButton() {
 
 // Start observing when the script runs
 observeAddToAutomationButton();
-
 
 //GHL Customization code
 
