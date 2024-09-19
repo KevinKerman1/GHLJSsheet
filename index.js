@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 74");
+alert("test 75");
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -213,8 +213,8 @@ observeAddToAutomationButton();
                 try {
                     const userData = JSON.parse(localStorage.getItem(key)); // Parse the value as JSON
                     console.log("Found _pendo_visitorId key:", key); // Log the found key
-                    if (userData && typeof userData === 'object' && userData.id) {
-                        userId = userData.id;  // Extract the user ID
+                    if (userData && userData.value) {
+                        userId = userData.value;  // Extract the user ID
                         console.log("Extracted User ID:", userId); // Log the found user ID
                     }
                 } catch (error) {
@@ -281,7 +281,7 @@ observeAddToAutomationButton();
             const element = document.querySelector(selector);
             if (element) {
                 element.style.display = "none";
-                
+                console.log(`Element ${index + 1} hidden successfully`);
             }
         });
     }
