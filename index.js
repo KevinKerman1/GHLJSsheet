@@ -16,7 +16,7 @@ function changeButtonAppearance(addToAutomationButton) {
         }
 
         // Change the text content to "Let's start"
-        addToAutomationButton.textContent = "Let's start";
+        addToAutomationButton.textContent = "Add to Dialer";
 
         // Log the button's current text content after attempting to change it
         console.log('Button appearance and text after change:', addToAutomationButton.textContent);
