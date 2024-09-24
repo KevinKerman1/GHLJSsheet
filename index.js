@@ -1,22 +1,34 @@
 console.log("script running");
-alert("test 106")
+alert("test 107")
 
 // Function to change the button text to "Add to Dialer"
 function changeButtonText() {
     // Use the provided selector to find the button
-    const button = document.querySelector('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button');
+    const buttonSelector = '#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button';
 
-    // Check if the button exists
-    if (button) {
-        // Change the button's innerHTML to display "Add to Dialer"
-        button.innerHTML = 'Add to Dialer';
-        console.log('Button text changed to "Add to Dialer"');
-    } else {
-        console.log('Button not found!');
-    }
+    // Use a MutationObserver to detect when the button appears in the DOM
+    const observer = new MutationObserver((mutations, obs) => {
+        const button = document.querySelector(buttonSelector);
+
+        if (button) {
+            // Change the button's innerHTML to display "Add to Dialer"
+            button.innerHTML = 'Add to Dialer';
+            console.log('Button text changed to "Add to Dialer"');
+            // Stop observing once the button is found and text is changed
+            obs.disconnect();
+        }
+    });
+
+    // Start observing the document for changes
+    observer.observe(document, {
+        childList: true,
+        subtree: true
+    });
 }
 
 // Call the function to change the button text
+
+
 
 
 
