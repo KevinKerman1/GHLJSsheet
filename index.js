@@ -1,36 +1,29 @@
 console.log("script running");
-alert("test 109")
+alert("test 110")
 
 // Function to remove the icon and replace it with text
-function replaceIconWithText() {
-    // First icon: Replace with "Add to Dialer"
-    const dialerIconSelector = '#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i';
-    const dialerIcon = document.querySelector(dialerIconSelector);
+function replaceIconWithText(selector, newText) {
+    // Use the provided selector to find the icon
+    const iconElement = document.querySelector(selector);
 
-    if (dialerIcon) {
-        const dialerButton = dialerIcon.parentElement;
-        dialerIcon.remove();
-        dialerButton.textContent = 'Add to Dialer';
-        console.log('Icon replaced with "Add to Dialer" text.');
+    // Check if the icon element exists
+    if (iconElement) {
+        // Get the parent button element
+        const parentButton = iconElement.parentElement;
+
+        // Remove the icon element
+        iconElement.remove();
+
+        // Replace it with the desired text
+        parentButton.textContent = newText;
+
+        console.log(`Icon replaced with "${newText}" text.`);
     } else {
-        console.log('Dialer icon not found!');
-    }
-
-    // Second icon: Replace with "Add Contact"
-    const contactIconSelector = '#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i';
-    const contactIcon = document.querySelector(contactIconSelector);
-
-    if (contactIcon) {
-        const contactButton = contactIcon.parentElement;
-        contactIcon.remove();
-        contactButton.textContent = 'Add Contact';
-        console.log('Icon replaced with "Add Contact" text.');
-    } else {
-        console.log('Contact icon not found!');
+        console.log(`Icon element not found for selector: ${selector}`);
     }
 }
 
-// Call the function to replace both icons with text
+
 
 
 
@@ -361,7 +354,12 @@ observeAddToAutomationButton();
         const observer = new MutationObserver(function (mutations) {
             mutations.forEach(function () {
                 hideTargetElements(); // Call the function whenever there's a change in the DOM
-                replaceIconWithText();
+                // Replace the first icon with "Add to Dialer" text
+                replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i', 'Add to Dialer');
+
+                // Replace the second icon with "Add Contact" text
+                replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
+                replaceIconWithText('#sb_contacts', 'Contacts and Dialer');
             });
         });
 
@@ -373,7 +371,12 @@ observeAddToAutomationButton();
 
         // Run the function once initially in case the elements are already present
         hideTargetElements();
-        replaceIconWithText();
+        // Replace the first icon with "Add to Dialer" text
+        replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i', 'Add to Dialer');
+
+        // Replace the second icon with "Add Contact" text
+        replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
+        replaceIconWithText('#sb_contacts', 'Contacts and Dialer');
     } else {
         console.log("User ID matched, script will not hide elements.");
     }
