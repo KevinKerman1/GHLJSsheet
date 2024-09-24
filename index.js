@@ -1,6 +1,6 @@
 console.log("script running");
 
-alert("test 122");
+alert("test 123");
 
 
 // Function to change the text content of the specific span element inside the #sb_contacts element
@@ -18,18 +18,6 @@ function changeTextContent(selector, newText) {
         console.log(`Text element not found for selector: ${selector}`);
     }
 }
-
-// Change the text in the span element within the #sb_contacts
-
-
-
-
-
-
-
-
-
-
 
 
 
