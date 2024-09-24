@@ -371,6 +371,8 @@ observeAddToAutomationButton();
             "#sb_business-services",
             "#sb_other-settings",
             "#assignedUserPicker > div",
+            "#tb_manial-actions",
+            "#tb_conversations-tab",
             "#app > div > div > div > div.grid.columns-2.break-after-column.grid-cols-1.gap-4.overflow-scroll.lg\\:grid-cols-2 > div.column-span-1 > div:nth-child(3)",
             "#app > div > div > div > div.grid.columns-2.break-after-column.grid-cols-1.gap-4.overflow-scroll.lg\\:grid-cols-2 > div.column-span-1 > div:nth-child(3) > div:nth-child(1) > div.hl-card-content"
         ];
