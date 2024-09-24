@@ -312,7 +312,7 @@ observeAddToAutomationButton();
             const element = document.querySelector(selector);
             if (element) {
                 element.style.display = "none";
-                console.log(`Element ${index + 1} hidden successfully`);
+                
             }
         });
     }
