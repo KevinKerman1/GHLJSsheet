@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 117");
+alert("test 118");
 
 // Function to remove the icon and replace it with text
 function replaceIconWithText(selector, newText) {
@@ -23,20 +23,38 @@ function replaceIconWithText(selector, newText) {
 
 
 // Function to change the text content of the specific span element inside the #sb_contacts element
-function changeTextContent(selector, newText) {
-    // Use the provided selector to find the element
-    const textElement = document.querySelector(selector);
+function changeTextWithObserver(selector, newText) {
+    const targetNode = document.querySelector(selector);
 
-    // Check if the element exists
-    if (textElement) {
-        // Change the text content to the new text
-        textElement.textContent = newText;
+    if (targetNode) {
+        // Create a MutationObserver to watch for changes in the DOM
+        const observer = new MutationObserver(function(mutationsList, observer) {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList' || mutation.type === 'subtree') {
+                    // Update the text content if the target span is found
+                    if (targetNode) {
+                        targetNode.textContent = newText;
+                        console.log(`Text changed to "${newText}" for selector: ${selector}`);
+                        // Once the change is made, stop observing
+                        observer.disconnect();
+                    }
+                }
+            }
+        });
 
-        console.log(`Text changed to "${newText}" for selector: ${selector}`);
+        // Start observing the target node for changes
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
     } else {
         console.log(`Text element not found for selector: ${selector}`);
     }
 }
+
+// Call the function to change the text in the span element with selector "#sb_contacts span"
+changeTextWithObserver('#sb_contacts span.nav-title', 'Contacts and Dialer');
+
 
 
 
