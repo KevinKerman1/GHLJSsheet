@@ -1,6 +1,6 @@
 console.log("script running");
 
-alert("test 123");
+alert("test 130");
 
 function replaceIconWithText(selector, newText) {
     // Use the provided selector to find the icon
