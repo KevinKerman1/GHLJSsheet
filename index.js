@@ -27,7 +27,7 @@ function changeButtonText() {
 }
 
 // Call the function to change the button text
-
+changeButtonText();
 
 
 
