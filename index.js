@@ -1,6 +1,6 @@
 console.log("script running");
 
-alert("test 133");
+alert("test 134");
 
 // Function to create the new button and add it after the existing button
 function createNewButton() {
@@ -22,31 +22,6 @@ function createNewButton() {
         // Add the button after the existing button
         existingButton.parentNode.insertBefore(newButton, existingButton.nextSibling);
 
-        // Add the event listener for the new button
-        newButton.addEventListener('click', function() {
-            console.log('Dialer Settings button clicked!');
-
-            // Get the current URL
-            const currentUrl = window.location.href;
-
-            // Use regular expression to extract the location ID from the URL
-            const locationIdMatch = currentUrl.match(/\/location\/([a-zA-Z0-9]+)\//);
-
-            // Check if the location ID was found
-            if (locationIdMatch && locationIdMatch[1]) {
-                const locationId = locationIdMatch[1];
-                console.log('Location ID:', locationId);
-
-                // Construct the new URL using the extracted location ID
-                const newUrl = `https://app.gohighlevel.com/v2/location/${locationId}/conversations/manual_actions`;
-
-                // Redirect to the new URL
-                window.location.href = newUrl;
-            } else {
-                console.log('Location ID not found in the current URL.');
-            }
-        });
-
         console.log('New button created successfully.');
     } else {
         console.log('Existing button not found.');
@@ -54,7 +29,6 @@ function createNewButton() {
 }
 
 // Call the function to create the new button
-
 
 
 
