@@ -1,6 +1,6 @@
 console.log("script running");
 
-alert("test 131");
+alert("test 133");
 
 // Function to create the new button and add it after the existing button
 function createNewButton() {
@@ -29,10 +29,12 @@ function createNewButton() {
             // Get the current URL
             const currentUrl = window.location.href;
 
-            // Extract the location ID from the URL
-            const locationId = currentUrl.match(/\/location\/([a-zA-Z0-9]+)\//)[1];
+            // Use regular expression to extract the location ID from the URL
+            const locationIdMatch = currentUrl.match(/\/location\/([a-zA-Z0-9]+)\//);
 
-            if (locationId) {
+            // Check if the location ID was found
+            if (locationIdMatch && locationIdMatch[1]) {
+                const locationId = locationIdMatch[1];
                 console.log('Location ID:', locationId);
 
                 // Construct the new URL using the extracted location ID
@@ -52,6 +54,7 @@ function createNewButton() {
 }
 
 // Call the function to create the new button
+
 
 
 
