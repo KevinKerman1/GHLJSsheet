@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 118");
+
 
 // Function to remove the icon and replace it with text
 function replaceIconWithText(selector, newText) {
