@@ -373,9 +373,11 @@ observeAddToAutomationButton();
         hideTargetElements();
         // Replace the first icon with "Add to Dialer" text
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i', 'Add to Dialer');
+        replaceIconWithText('#sb_contacts > span', 'Contacts and Dialer');
 
         // Replace the second icon with "Add Contact" text
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
+        replaceIconWithText('#sb_contacts > span', 'Contacts and Dialer');
         
     } else {
         console.log("User ID matched, script will not hide elements.");
