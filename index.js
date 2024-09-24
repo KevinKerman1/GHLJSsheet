@@ -1,5 +1,5 @@
 console.log("script running");
-
+alert("test 100")
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -281,7 +281,27 @@ observeAddToAutomationButton();
             "#sb_payments",
             "#sb_opportunities",
             "#sb_calendars",
-            "#sb_launchpad"
+            "#sb_launchpad",
+            "#sb_my-staff",
+            "#sb_my-staff",
+            "#sb_",
+            "#sb_conversation_ai_settings",
+            "#sb_location-email-services",
+            "#sb_whatsapp",
+            "#sb_reputation-management",
+            "#sb_custom-fields-settings",
+            "#sb_custom-values",
+            "#sb_manage-scoring",
+            "#sb_domains",
+            "#sb_url-redirects",
+            "#sb_integrations",
+            "#sb_undefined",
+            "#sb_conversations_providers",
+            "#sb_tags",
+            "#sb_labs",
+            "#sb_audit-logs-location",
+            "#sb_brand-boards",
+            "#sb_business-settings-v2"
         ];
 
         selectors.forEach((selector, index) => {
