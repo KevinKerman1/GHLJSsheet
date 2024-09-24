@@ -1,29 +1,36 @@
 console.log("script running");
-alert("test 108")
+alert("test 109")
 
 // Function to remove the icon and replace it with text
 function replaceIconWithText() {
-    // Use the provided selector to find the icon
-    const iconElement = document.querySelector('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i');
+    // First icon: Replace with "Add to Dialer"
+    const dialerIconSelector = '#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i';
+    const dialerIcon = document.querySelector(dialerIconSelector);
 
-    // Check if the icon element exists
-    if (iconElement) {
-        // Get the parent button element
-        const parentButton = iconElement.parentElement;
-
-        // Remove the icon element
-        iconElement.remove();
-
-        // Replace it with the desired text
-        parentButton.textContent = 'Add to Dialer';
-
+    if (dialerIcon) {
+        const dialerButton = dialerIcon.parentElement;
+        dialerIcon.remove();
+        dialerButton.textContent = 'Add to Dialer';
         console.log('Icon replaced with "Add to Dialer" text.');
     } else {
-        console.log('Icon element not found!');
+        console.log('Dialer icon not found!');
+    }
+
+    // Second icon: Replace with "Add Contact"
+    const contactIconSelector = '#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i';
+    const contactIcon = document.querySelector(contactIconSelector);
+
+    if (contactIcon) {
+        const contactButton = contactIcon.parentElement;
+        contactIcon.remove();
+        contactButton.textContent = 'Add Contact';
+        console.log('Icon replaced with "Add Contact" text.');
+    } else {
+        console.log('Contact icon not found!');
     }
 }
 
-// Call the function to replace the icon with text
+// Call the function to replace both icons with text
 
 
 
