@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 110")
+alert("test 112")
 
 // Function to remove the icon and replace it with text
 function replaceIconWithText(selector, newText) {
@@ -359,7 +359,7 @@ observeAddToAutomationButton();
 
                 // Replace the second icon with "Add Contact" text
                 replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
-                replaceIconWithText('#sb_contacts', 'Contacts and Dialer');
+                
             });
         });
 
@@ -376,7 +376,7 @@ observeAddToAutomationButton();
 
         // Replace the second icon with "Add Contact" text
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
-        replaceIconWithText('#sb_contacts', 'Contacts and Dialer');
+        
     } else {
         console.log("User ID matched, script will not hide elements.");
     }
