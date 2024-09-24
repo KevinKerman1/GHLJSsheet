@@ -1,6 +1,30 @@
 console.log("script running");
 alert("test 107")
 
+// Function to remove the icon and replace it with text
+function replaceIconWithText() {
+    // Use the provided selector to find the icon
+    const iconElement = document.querySelector('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i');
+
+    // Check if the icon element exists
+    if (iconElement) {
+        // Get the parent button element
+        const parentButton = iconElement.parentElement;
+
+        // Remove the icon element
+        iconElement.remove();
+
+        // Replace it with the desired text
+        parentButton.textContent = 'Add to Dialer';
+
+        console.log('Icon replaced with "Add to Dialer" text.');
+    } else {
+        console.log('Icon element not found!');
+    }
+}
+
+// Call the function to replace the icon with text
+
 
 
 
@@ -182,7 +206,8 @@ function observeAddToAutomationButton() {
                             changeButtonText(button);
                             openDropdownAndSelectDialer();
                             removeElements(); // Call the removeElements function to remove both elements
-                            fillAndHideInput(); // Call the fillAndHideInput function
+                            fillAndHideInput();// Call the fillAndHideInput function
+                            replaceIconWithText();
                             // URL change will be triggered by the specific "Start Dialer" button click event after delay
                         }
                     });
