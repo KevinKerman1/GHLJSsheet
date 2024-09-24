@@ -1,6 +1,6 @@
 console.log("script running");
 
-
+alert("test 120")
 // Function to remove the icon and replace it with text
 function replaceIconWithText(selector, newText) {
     // Use the provided selector to find the icon
@@ -23,37 +23,24 @@ function replaceIconWithText(selector, newText) {
 
 
 // Function to change the text content of the specific span element inside the #sb_contacts element
-function changeTextWithObserver(selector, newText) {
-    const targetNode = document.querySelector(selector);
+function changeTextContent(selector, newText) {
+    // Use the provided selector to find the element
+    const textElement = document.querySelector(selector);
 
-    if (targetNode) {
-        // Create a MutationObserver to watch for changes in the DOM
-        const observer = new MutationObserver(function(mutationsList, observer) {
-            for (let mutation of mutationsList) {
-                if (mutation.type === 'childList' || mutation.type === 'subtree') {
-                    // Update the text content if the target span is found
-                    if (targetNode) {
-                        targetNode.textContent = newText;
-                        console.log(`Text changed to "${newText}" for selector: ${selector}`);
-                        // Once the change is made, stop observing
-                        observer.disconnect();
-                    }
-                }
-            }
-        });
+    // Check if the element exists
+    if (textElement) {
+        // Change the text content to the new text
+        textElement.textContent = newText;
 
-        // Start observing the target node for changes
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+        console.log(`Text changed to "${newText}" for selector: ${selector}`);
     } else {
         console.log(`Text element not found for selector: ${selector}`);
     }
 }
 
-// Call the function to change the text in the span element with selector "#sb_contacts span"
-changeTextWithObserver('#sb_contacts span.nav-title', 'Contacts and Dialer');
+// Change the text in the span element within the #sb_contacts
+changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
+
 
 
 
@@ -397,6 +384,7 @@ observeAddToAutomationButton();
 
                 // Replace the second icon with "Add Contact" text
                 replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
+                changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
                 
             });
         });
@@ -411,7 +399,7 @@ observeAddToAutomationButton();
         hideTargetElements();
         // Replace the first icon with "Add to Dialer" text
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i', 'Add to Dialer');
-        changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
+        
 
         // Replace the second icon with "Add Contact" text
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
