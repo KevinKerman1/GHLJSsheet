@@ -269,6 +269,7 @@ observeAddToAutomationButton();
             "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.bg-gray-100 > div:nth-child(2)",
             "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.bg-gray-100",
             "#contact-details > div > div.relative.p-0.hl_contact-details-left > div > div.h-full.overflow-y-auto > div.px-4.pt-4.flex.justify-center.pb-4",
+            "#sb_dashboard",
             "#sb_location-mobile-app",
             "#sb_app-marketplace",
             "#sb_reporting",
