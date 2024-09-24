@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 102")
+alert("test 103")
 
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
@@ -302,6 +302,8 @@ observeAddToAutomationButton();
             "#sb_audit-logs-location",
             "#sb_brand-boards",
             "#sb_business-settings-v2",
+            "#sb_business-services",
+            "#sb_other-settings",
             "#app > div > div > div > div.grid.columns-2.break-after-column.grid-cols-1.gap-4.overflow-scroll.lg\:grid-cols-2 > div.column-span-1 > div:nth-child(3)",
             "#app > div > div > div > div.grid.columns-2.break-after-column.grid-cols-1.gap-4.overflow-scroll.lg\:grid-cols-2 > div.column-span-1 > div:nth-child(3) > div:nth-child(1) > div.hl-card-content"
         ];
