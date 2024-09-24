@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 112")
+alert("test 113")
 
 // Function to remove the icon and replace it with text
 function replaceIconWithText(selector, newText) {
@@ -20,6 +20,23 @@ function replaceIconWithText(selector, newText) {
         console.log(`Icon replaced with "${newText}" text.`);
     } else {
         console.log(`Icon element not found for selector: ${selector}`);
+    }
+}
+
+
+// Function to change the text content of an element
+function changeTextContent(selector, newText) {
+    // Use the provided selector to find the element
+    const textElement = document.querySelector(selector);
+
+    // Check if the element exists
+    if (textElement) {
+        // Change the text content to the new text
+        textElement.textContent = newText;
+
+        console.log(`Text changed to "${newText}" for selector: ${selector}`);
+    } else {
+        console.log(`Text element not found for selector: ${selector}`);
     }
 }
 
@@ -373,11 +390,11 @@ observeAddToAutomationButton();
         hideTargetElements();
         // Replace the first icon with "Add to Dialer" text
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button > i', 'Add to Dialer');
-        replaceIconWithText('#sb_contacts > span', 'Contacts and Dialer');
+        changeTextContent('#sb_contacts > span', 'Contacts and Dialer');
 
         // Replace the second icon with "Add Contact" text
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
-        replaceIconWithText('#sb_contacts > span', 'Contacts and Dialer');
+        changeTextContent('#sb_contacts > span', 'Contacts and Dialer');
         
     } else {
         console.log("User ID matched, script will not hide elements.");
