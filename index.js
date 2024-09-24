@@ -2,6 +2,20 @@ console.log("script running");
 
 alert("test 123");
 
+function replaceIconWithText(selector, newText) {
+    // Use the provided selector to find the icon
+    const iconElement = document.querySelector(selector);
+    // Check if the icon element exists
+    if (iconElement) {
+        // Get the parent button element
+        const parentButton = iconElement.parentElement;
+        // Remove the icon element
+        iconElement.remove();
+        // Replace it with the desired text
+        parentButton.textContent = newText;
+      
+    } 
+}
 
 // Function to change the text content of the specific span element inside the #sb_contacts element
 function changeTextContent(selector, newText) {
