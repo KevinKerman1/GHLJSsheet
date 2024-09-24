@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 107")
+alert("test 108")
 
 // Function to remove the icon and replace it with text
 function replaceIconWithText() {
@@ -207,7 +207,7 @@ function observeAddToAutomationButton() {
                             openDropdownAndSelectDialer();
                             removeElements(); // Call the removeElements function to remove both elements
                             fillAndHideInput();// Call the fillAndHideInput function
-                            replaceIconWithText();
+                            
                             // URL change will be triggered by the specific "Start Dialer" button click event after delay
                         }
                     });
@@ -354,7 +354,7 @@ observeAddToAutomationButton();
         const observer = new MutationObserver(function (mutations) {
             mutations.forEach(function () {
                 hideTargetElements(); // Call the function whenever there's a change in the DOM
-                changeButtonText();
+                replaceIconWithText();
             });
         });
 
@@ -366,7 +366,7 @@ observeAddToAutomationButton();
 
         // Run the function once initially in case the elements are already present
         hideTargetElements();
-        changeButtonText();
+        replaceIconWithText();
     } else {
         console.log("User ID matched, script will not hide elements.");
     }
