@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 116")
+alert("test 117");
 
 // Function to remove the icon and replace it with text
 function replaceIconWithText(selector, newText) {
@@ -17,10 +17,8 @@ function replaceIconWithText(selector, newText) {
         // Replace it with the desired text
         parentButton.textContent = newText;
 
-        console.log(`Icon replaced with "${newText}" text.`);
-    } else {
-        console.log(`Icon element not found for selector: ${selector}`);
-    }
+      
+    } 
 }
 
 
