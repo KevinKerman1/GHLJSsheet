@@ -1,6 +1,6 @@
 console.log("script running");
 
-alert("test 120")
+alert("test 121")
 // Function to remove the icon and replace it with text
 function replaceIconWithText(selector, newText) {
     // Use the provided selector to find the icon
@@ -39,7 +39,7 @@ function changeTextContent(selector, newText) {
 }
 
 // Change the text in the span element within the #sb_contacts
-changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
+
 
 
 
@@ -385,6 +385,7 @@ observeAddToAutomationButton();
                 // Replace the second icon with "Add Contact" text
                 replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
                 changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
+                changeTextContent('#customers > div > div.hl_controls > div.hl_controls--left > h3', 'Dialer Settings');
                 
             });
         });
@@ -404,6 +405,7 @@ observeAddToAutomationButton();
         // Replace the second icon with "Add Contact" text
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
         changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
+        changeTextContent('#customers > div > div.hl_controls > div.hl_controls--left > h3', 'Dialer Settings');
         
     } else {
         console.log("User ID matched, script will not hide elements.");
