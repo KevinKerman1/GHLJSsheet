@@ -1,79 +1,6 @@
 console.log("script running");
 
-alert("test 121");
-
-// Function to create the new button and add it after the existing button
-function createNewButton() {
-    // Use the selector to find the existing button
-    const existingButton = document.querySelector('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button');
-
-    // Check if the existing button is found
-    if (existingButton) {
-        // Create a new button element
-        const newButton = document.createElement('button');
-
-        // Copy the same class and attributes as the existing button
-        newButton.setAttribute('type', 'button');
-        newButton.className = existingButton.className; // Copy the class name from the existing button
-
-        // Set the new button's text
-        newButton.textContent = 'Go to Dialer Settings';
-
-        // Add the button after the existing button
-        existingButton.parentNode.insertBefore(newButton, existingButton.nextSibling);
-
-        // Add the event listener for the new button
-        newButton.addEventListener('click', function() {
-            console.log('Dialer Settings button clicked!');
-
-            // Get the current URL
-            const currentUrl = window.location.href;
-
-            // Extract the location ID from the URL
-            const locationId = currentUrl.match(/\/location\/([a-zA-Z0-9]+)\//)[1];
-
-            if (locationId) {
-                console.log('Location ID:', locationId);
-
-                // Construct the new URL using the extracted location ID
-                const newUrl = `https://app.gohighlevel.com/v2/location/${locationId}/conversations/manual_actions`;
-
-                // Redirect to the new URL
-                window.location.href = newUrl;
-            } else {
-                console.log('Location ID not found in the current URL.');
-            }
-        });
-
-        console.log('New button created successfully.');
-    } else {
-        console.log('Existing button not found.');
-    }
-}
-
-// Call the function to create the new button
-
-
-
-// Function to remove the icon and replace it with text
-function replaceIconWithText(selector, newText) {
-    // Use the provided selector to find the icon
-    const iconElement = document.querySelector(selector);
-
-    // Check if the icon element exists
-    if (iconElement) {
-        // Get the parent button element
-        const parentButton = iconElement.parentElement;
-
-        // Remove the icon element
-        iconElement.remove();
-
-        // Replace it with the desired text
-        parentButton.textContent = newText;
-
-      
-    } 
-}
+alert("test 122");
 
 
 // Function to change the text content of the specific span element inside the #sb_contacts element
@@ -440,7 +367,7 @@ observeAddToAutomationButton();
                 replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
                 changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
                 changeTextContent('#customers > div > div.hl_controls > div.hl_controls--left > h3', 'Dialer Settings');
-                createNewButton();
+                
                 
             });
         });
@@ -461,7 +388,7 @@ observeAddToAutomationButton();
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
         changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
         changeTextContent('#customers > div > div.hl_controls > div.hl_controls--left > h3', 'Dialer Settings');
-        createNewButton();
+        
         
     } else {
         console.log("User ID matched, script will not hide elements.");
