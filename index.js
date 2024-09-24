@@ -1,5 +1,5 @@
 console.log("script running");
-alert("test 105")
+alert("test 106")
 
 // Function to change the button text to "Add to Dialer"
 function changeButtonText() {
