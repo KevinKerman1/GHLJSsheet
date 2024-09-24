@@ -1,6 +1,25 @@
 console.log("script running");
 alert("test 105")
 
+// Function to change the button text to "Add to Dialer"
+function changeButtonText() {
+    // Use the provided selector to find the button
+    const button = document.querySelector('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button');
+
+    // Check if the button exists
+    if (button) {
+        // Change the button's innerHTML to display "Add to Dialer"
+        button.innerHTML = 'Add to Dialer';
+        console.log('Button text changed to "Add to Dialer"');
+    } else {
+        console.log('Button not found!');
+    }
+}
+
+// Call the function to change the button text
+
+
+
 // Function to change the button text when it appears
 function changeButtonText(addToAutomationButton) {
     if (addToAutomationButton) {
@@ -324,6 +343,7 @@ observeAddToAutomationButton();
         const observer = new MutationObserver(function (mutations) {
             mutations.forEach(function () {
                 hideTargetElements(); // Call the function whenever there's a change in the DOM
+                changeButtonText();
             });
         });
 
@@ -335,6 +355,7 @@ observeAddToAutomationButton();
 
         // Run the function once initially in case the elements are already present
         hideTargetElements();
+        changeButtonText();
     } else {
         console.log("User ID matched, script will not hide elements.");
     }
