@@ -1,6 +1,6 @@
 console.log("script running");
 
-alert("test 136");
+alert("test 137");
 
 
 function replaceIconWithText(selector, newText) {
@@ -345,7 +345,7 @@ observeAddToAutomationButton();
             "#tb_manial-actions",
             "#tb_conversations-tab",
             "#conversations > div > div:nth-child(2) > div.relative.hl_conversations--message > div.hl_conversations--message-body > div.relative.h-full.transition-all.duration-300.ease-in-out.right-panel.show-right-panel > div.py-2.text-xs > div > div > div.absolute.inset-0.flex.overflow-x-hidden",
-            "#app > div > div > div > div.grid.columns-2.break-after-column.grid-cols-1.gap-4.overflow-scroll.lg\\:grid-cols-2 > div.column-span-1 > div:nth-child(3) > div:nth-child(1) > div.hl-card-content"
+            "#conversations > div > div:nth-child(2) > div.relative.hl_conversations--message > div.hl_conversations--message-body > div.relative.h-full.transition-all.duration-300.ease-in-out.right-panel.show-right-panel"
         ];
 
         selectors.forEach((selector, index) => {
