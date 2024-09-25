@@ -1,6 +1,34 @@
 console.log("script running");
 
-alert("test 134");
+alert("test 135");
+
+// Function to create the new button and add it after the existing button
+function createNewButtonnn() {
+    // Use the selector to find the existing button
+    const existingButton = document.querySelector('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span.bulk-actions-list > span:nth-child(2) > button');
+
+    // Check if the existing button is found
+    if (existingButton) {
+        // Create a new button element
+        const newButton = document.createElement('button');
+
+        // Copy the same class and attributes as the existing button
+        newButton.setAttribute('type', 'button');
+        newButton.className = existingButton.className; // Copy the class name from the existing button
+
+        // Set the new button's text
+        newButton.textContent = 'Go to Dialer Settings';
+
+        // Add the button after the existing button
+        existingButton.parentNode.insertBefore(newButton, existingButton.nextSibling);
+
+        console.log('New button created successfully.');
+    } else {
+        console.log('Existing button not found.');
+    }
+}
+
+// Call the function to create the new button
 
 
 
@@ -372,6 +400,7 @@ observeAddToAutomationButton();
                 replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
                 changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
                 changeTextContent('#customers > div > div.hl_controls > div.hl_controls--left > h3', 'Dialer Settings');
+                createNewButtonnn();
                 
                 
                 
@@ -394,7 +423,7 @@ observeAddToAutomationButton();
         replaceIconWithText('#smartlists > div.hl_controls.hl_smartlists--controls > div.hl_controls--left > span:nth-child(1) > button > i', 'Add Contact');
         changeTextContent('#sb_contacts span.nav-title', 'Contacts and Dialer');
         changeTextContent('#customers > div > div.hl_controls > div.hl_controls--left > h3', 'Dialer Settings');
-        
+        createNewButtonnn();
         
         
     } else {
