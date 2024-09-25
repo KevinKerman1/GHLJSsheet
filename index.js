@@ -346,7 +346,9 @@ observeAddToAutomationButton();
             "#tb_conversations-tab",
             "#conversations > div > div:nth-child(2) > div.relative.hl_conversations--message > div.hl_conversations--message-body > div.relative.h-full.transition-all.duration-300.ease-in-out.right-panel.show-right-panel > div.py-2.text-xs > div > div > div.absolute.inset-0.flex.overflow-x-hidden",
             "#conversations > div > div:nth-child(2) > div.relative.hl_conversations--message > div.hl_conversations--message-body > div.relative.h-full.transition-all.duration-300.ease-in-out.right-panel.show-right-panel",
-            "#activityDropdownMenuButton"
+            "#activityDropdownMenuButton",
+            "#whatsapp-tab",
+            "#conversations > div > div.hl_conversations--messages-list-v2.relative.border-r.border-gray-200 > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(2)"
         ];
 
         selectors.forEach((selector, index) => {
