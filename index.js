@@ -1,6 +1,6 @@
 console.log("script running");
 
-alert("test 139");
+alert("test 140");
 
 
 function replaceIconWithText(selector, newText) {
