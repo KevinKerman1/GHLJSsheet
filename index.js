@@ -1,6 +1,6 @@
 console.log("script running");
 
-alert("test 140");
+alert("test 141");
 
 
 function replaceIconWithText(selector, newText) {
@@ -349,7 +349,7 @@ observeAddToAutomationButton();
             "#activityDropdownMenuButton",
             "#whatsapp-tab",
             "#conversations > div > div.hl_conversations--messages-list-v2.relative.border-r.border-gray-200 > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(2)",
-            "#__BVID__671___BV_modal_body_ > div > div > form > div.mt-1.mb-2.py-2.pr-3.pl-3"
+            "#app > div > div > div > div.grid.columns-2.break-after-column.grid-cols-1.gap-4.overflow-scroll.lg\\:grid-cols-2 > div.column-span-1 > div:nth-child(3) > div:nth-child(1)"
         ];
 
         selectors.forEach((selector, index) => {
